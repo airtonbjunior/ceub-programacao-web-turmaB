@@ -7,6 +7,6 @@
  - Alterar a forma de fazer o bind do botão (alterar o onclick)
  - Checar se o input está vazio
  - Adicionar placeholder
- - Adicionar símbolo de moeda no resultado
+ - Adicionar símbolo de moeda no resultado (cada moeda tem símbolo diferente, usar objeto)
  - Quebrar resultado em 2 casas decimais
  - Estilizar o Conversor de moedas
