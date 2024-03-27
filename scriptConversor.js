@@ -41,5 +41,9 @@ function limpar() {
 }
 
 function inverter() {
-    alert("Você vai inverter!");
+    let valorMoeda1 = document.getElementById("moeda1").value;
+    let valorMoeda2 = document.getElementById("moeda2").value;
+
+    document.getElementById("moeda1").value = valorMoeda2;
+    document.getElementById("moeda2").value = valorMoeda1;
 }
