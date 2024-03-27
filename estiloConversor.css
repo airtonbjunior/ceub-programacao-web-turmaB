@@ -1,12 +1,41 @@
 #container {
     margin-top: 50px;
-    border: 5px solid #aaa;
+    border: 1px solid #aaa;
     padding: 20px;
     text-align: center;
 }
 
+#parametros-conversao { 
+    margin: 20px;
+}
+
 input, select, button {
-    margin-top: 50px;
-    margin-bottom: 50px;
+    /*margin-top: 50px;
+    margin-bottom: 50px;*/
     padding: 10px;
+}
+
+p {
+    font-weight: bold;
+}
+
+select {
+    border: 1px solid #aaa;
+}
+
+button {
+    /* background-color: #4CAF50; */
+    border: none;
+    /* color: white; /* cor do texto */
+    padding: 10px;
+    text-align: center; 
+    text-decoration: none; 
+    display: inline-block;
+    font-size: 16px;
+    /* border-radius: 8px;  */
+    /* box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); sombra */
+}
+
+button:hover {
+    background-color: #45a049; /* cor de fundo no hover */
 }
