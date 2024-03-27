@@ -9,4 +9,5 @@
  - Adicionar placeholder
  - Adicionar símbolo de moeda no resultado (cada moeda tem símbolo diferente, usar objeto)
  - Quebrar resultado em 2 casas decimais
+ - Variáveis no CSS (cores dos itens, por exemplo)
  - Estilizar o Conversor de moedas
