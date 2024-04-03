@@ -26,9 +26,9 @@ const botaoLimpar = document.getElementById("botao-limpar");
 botaoLimpar.addEventListener("click", limpar);
 
 
-document.addEventListener("keydown", function(event) {
-    console.log(event);
-}, false);
+//document.addEventListener("keydown", function(event) {
+//    console.log(event);
+//});
 
 
 
@@ -38,11 +38,11 @@ valorUsuario.addEventListener("keypress", function(event) {
     //event.preventDefault();
     //console.log(event);
 
-    if(event.ctrlKey == true && event.code == "KeyL") {
-        alert("oi");
-        event.preventDefault();
-        limpar();
-    }
+    //if(event.ctrlKey == true && event.code == "KeyL") {
+    //    alert("oi");
+    //    event.preventDefault();
+    //    limpar();
+    //}
 
 
     if(event.ctrlKey == true && event.code == "KeyI") {
