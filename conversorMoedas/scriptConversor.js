@@ -16,6 +16,15 @@ const valoresConversao = {
     }
 }
 
+const botaoInverter = document.getElementById("botao-inverter");
+botaoInverter.addEventListener("click", inverter);
+
+const botaoConverter = document.getElementById("botao-converter");
+botaoConverter.addEventListener("click", converter);
+
+const botaoLimpar = document.getElementById("botao-limpar");
+botaoLimpar.addEventListener("click", limpar);
+
 //console.log(valoresConversao['real']['euro']);
 
 function converter() {
