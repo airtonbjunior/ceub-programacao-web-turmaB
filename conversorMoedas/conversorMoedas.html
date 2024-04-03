@@ -10,7 +10,7 @@
 <body>
     <div id="container">
         <h1>Conversor de moedas</h1>
-        <input type="number" id="valorEntrada">
+        <input type="number" id="valorEntrada" placeholder="Valor para converter">
         <select name="moeda1" id="moeda1">
             <option value="real">Real</option>
             <option value="dolar">Dolar</option>
@@ -19,7 +19,7 @@
         <button onclick="inverter();">Inverter</button>
         <select name="moeda2" id="moeda2">
             <option value="real">Real</option>
-            <option value="dolar">Dolar</option>
+            <option value="dolar" selected>Dolar</option>
             <option value="euro">Euro</option>
         </select>
         <button onclick="limpar();">Limpar</button>
