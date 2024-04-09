@@ -25,33 +25,26 @@ botaoConverter.addEventListener("click", converter);
 const botaoLimpar = document.getElementById("botao-limpar");
 botaoLimpar.addEventListener("click", limpar);
 
+const botaoAceitarCookies = document.getElementById("accept-cookies");
+botaoAceitarCookies.addEventListener("click", aceitarCookies);
 
-//document.addEventListener("keydown", function(event) {
-//    console.log(event);
-//});
 
+
+if (!localStorage.getItem("cookiesAccepted")) {
+    const cookieNotice = document.getElementById("cookie-notice");
+    console.log("Não aceitou os cookies ainda")
+    cookieNotice.classList.remove("hidden");
+}
 
 
 let valorUsuario = document.getElementById("valorEntrada");
 valorUsuario.addEventListener("keypress", function(event) {
-
-    //event.preventDefault();
-    //console.log(event);
-
-    //if(event.ctrlKey == true && event.code == "KeyL") {
-    //    alert("oi");
-    //    event.preventDefault();
-    //    limpar();
-    //}
-
 
     if(event.ctrlKey == true && event.code == "KeyI") {
         
         event.preventDefault();
         inverter();
     }
-
-
 
     if(event.key == "Enter") {
         event.preventDefault();
@@ -103,4 +96,11 @@ function inverter() {
 
     document.getElementById("moeda1").value = valorMoeda2;
     document.getElementById("moeda2").value = valorMoeda1;
+}
+
+function aceitarCookies() {
+    const cookieNotice = document.getElementById("cookie-notice");
+    
+    localStorage.setItem("cookiesAccepted", true);
+    cookieNotice.classList.add("hidden");
 }
