@@ -25,33 +25,33 @@ botaoConverter.addEventListener("click", converter);
 const botaoLimpar = document.getElementById("botao-limpar");
 botaoLimpar.addEventListener("click", limpar);
 
+const botaoAceitaMensagem = document.getElementById("botao-aceita-mensagem");
+botaoAceitaMensagem.addEventListener("click", aceitarMensagem);
 
-//document.addEventListener("keydown", function(event) {
-//    console.log(event);
-//});
+
+function aceitarMensagem() {
+    const divMensagemUsuario = document.getElementById("mensagem-usuario");
+    divMensagemUsuario.classList.add("oculto");
+}
 
 
 
 let valorUsuario = document.getElementById("valorEntrada");
 valorUsuario.addEventListener("keypress", function(event) {
+    
+    console.log(event);
+    
+    if(event.ctrlKey == true && event.key == "L") {
+        event.preventDefault();
+        limpar();
 
-    //event.preventDefault();
-    //console.log(event);
-
-    //if(event.ctrlKey == true && event.code == "KeyL") {
-    //    alert("oi");
-    //    event.preventDefault();
-    //    limpar();
-    //}
-
+    }
 
     if(event.ctrlKey == true && event.code == "KeyI") {
         
         event.preventDefault();
         inverter();
     }
-
-
 
     if(event.key == "Enter") {
         event.preventDefault();
