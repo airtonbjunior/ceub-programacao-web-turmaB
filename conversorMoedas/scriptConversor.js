@@ -33,17 +33,13 @@ botaoLimpar.addEventListener("click", limpar);
 
 
 let valorUsuario = document.getElementById("valorEntrada");
-valorUsuario.addEventListener("keypress", function(event) {
-
-    //event.preventDefault();
-    //console.log(event);
-
-    //if(event.ctrlKey == true && event.code == "KeyL") {
-    //    alert("oi");
-    //    event.preventDefault();
-    //    limpar();
-    //}
-
+valorUsuario.addEventListener("keydown", function(event) {
+    
+    if(event.ctrlKey == true && event.key == "l" )
+    {
+        event.preventDefault();
+        limpar();
+    }
 
     if(event.ctrlKey == true && event.code == "KeyI") {
         
