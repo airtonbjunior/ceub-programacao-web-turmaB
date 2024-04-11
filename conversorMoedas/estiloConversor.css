@@ -1,12 +1,37 @@
 #container {
     margin-top: 50px;
-    border: 5px solid #aaa;
+    border: 1px solid #aaa;
     padding: 20px;
     text-align: center;
+    width: 600px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 input, select, button {
     margin-top: 50px;
     margin-bottom: 50px;
     padding: 10px;
+}
+
+h1, p {
+    font-family: "Playfair Display", serif;
+}
+
+#mensagem-usuario {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    background-color: #f0f0f0;
+}
+
+#botao-aceita-mensagem {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.oculto {
+    display: none;
 }

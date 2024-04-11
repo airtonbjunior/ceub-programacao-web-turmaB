@@ -25,20 +25,34 @@ botaoConverter.addEventListener("click", converter);
 const botaoLimpar = document.getElementById("botao-limpar");
 botaoLimpar.addEventListener("click", limpar);
 
+const botaoAceitaMensagem = document.getElementById("botao-aceita-mensagem");
+botaoAceitaMensagem.addEventListener("click", aceitarMensagem);
 
-//document.addEventListener("keydown", function(event) {
-//    console.log(event);
-//});
+if(localStorage.getItem("aceitouCookie") == "1") {
+    console.log("usuario já aceitou os termos e não vou mais mostrar");
+    const divMensagemUsuario = document.getElementById("mensagem-usuario");
+    divMensagemUsuario.classList.add("oculto");
+}
+
+
+function aceitarMensagem() {
+    const divMensagemUsuario = document.getElementById("mensagem-usuario");
+    divMensagemUsuario.classList.add("oculto");
+
+    localStorage.setItem("aceitouCookie", "1");
+}
 
 
 
 let valorUsuario = document.getElementById("valorEntrada");
-valorUsuario.addEventListener("keydown", function(event) {
+valorUsuario.addEventListener("keypress", function(event) {
     
-    if(event.ctrlKey == true && event.key == "l" )
-    {
+    console.log(event);
+    
+    if(event.ctrlKey == true && event.key == "L") {
         event.preventDefault();
         limpar();
+
     }
 
     if(event.ctrlKey == true && event.code == "KeyI") {
@@ -46,8 +60,6 @@ valorUsuario.addEventListener("keydown", function(event) {
         event.preventDefault();
         inverter();
     }
-
-
 
     if(event.key == "Enter") {
         event.preventDefault();
@@ -58,8 +70,6 @@ valorUsuario.addEventListener("keydown", function(event) {
 
 function converter() {
     let valorUsuario = document.getElementById("valorEntrada").value;
-
-    console.log(valorUsuario);
 
     if(valorUsuario <= 0 || valorUsuario == "") {
         alert("Verificar valor");
@@ -75,15 +85,27 @@ function converter() {
     }
 
     let simbolo = valoresConversao[moeda2]["simbolo"];
-    //console.log(simbolo);
-
     let resultado = valorUsuario * valoresConversao[moeda1][moeda2];
-    
-    console.log(resultado);
-
     let paragrafoResultado = document.getElementById("resultado");
     paragrafoResultado.textContent = simbolo + " " + resultado.toFixed(2);
+
+    let objetoResultado = {
+        valorDoUsuario: valorUsuario,
+        valorMoeda1: moeda1,
+        valorMoeda2: moeda2,
+        valorResultado: resultado
+    }
+
+    console.log(objetoResultado);
+    
+    // Converter objeto javascript para texto (json) antes de salvar no localstorage
+    localStorage.setItem("historico", objetoResultado);
 }
+
+function salvarResultadoNoLocalStorage(resultado) {
+
+}
+
 
 function limpar() {
     let paragrafoResultado = document.getElementById("resultado");
