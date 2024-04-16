@@ -46,9 +46,7 @@ function aceitarMensagem() {
 
 let valorUsuario = document.getElementById("valorEntrada");
 valorUsuario.addEventListener("keypress", function(event) {
-    
-    //console.log(event);
-    
+
     if(event.ctrlKey == true && event.key == "L") {
         event.preventDefault();
         limpar();
@@ -95,20 +93,13 @@ function converter() {
         valorMoeda2: moeda2,
         valorResultado: resultado
     }
-
-    //console.log(objetoResultado);
     
-    // Converter objeto javascript para texto (json) antes de salvar no localstorage
-    //localStorage.setItem("historico", objetoResultado);
     salvarHistoricoNoLocalStorage(objetoResultado);
 }
 
 function salvarHistoricoNoLocalStorage(resultado) {
     let historico = recuperarHistoricoDoLocalStorage();
-
-    console.log(historico);
     historico.push(resultado);
-
     window.localStorage.setItem('historico', JSON.stringify(historico));
 }
 
