@@ -124,7 +124,7 @@ function recuperaHistorico() {
 }
 
 function salvarHistorico(conversao) {
-    let historico = recuperaHistorico(); // historico é um array de obj
+    let historico = recuperaHistorico();
     
     historico.push(conversao);
     historico = JSON.stringify(historico);
