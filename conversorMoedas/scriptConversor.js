@@ -69,6 +69,8 @@ valorUsuario.addEventListener("keypress", function(event) {
 
 
 function converter() {
+    let historicoRecuperado = recuperaHistorico();
+    
     let valorUsuario = document.getElementById("valorEntrada").value;
 
     if(valorUsuario <= 0 || valorUsuario == "") {
@@ -93,19 +95,41 @@ function converter() {
         valorDoUsuario: valorUsuario,
         valorMoeda1: moeda1,
         valorMoeda2: moeda2,
-        valorResultado: resultado
+        valorResultado: resultado.toFixed(2)
     }
 
-    console.log(objetoResultado);
-    
+    //console.log(objetoResultado);
+
+    //let objetoResultadoJSON = JSON.stringify(objetoResultado);
+
+    //localStorage.setItem("historico", objetoResultadoJSON);
+
+    salvarHistorico(objetoResultado);
+
     // Converter objeto javascript para texto (json) antes de salvar no localstorage
-    localStorage.setItem("historico", objetoResultado);
+    //localStorage.setItem("historico", objetoResultado);
 }
 
-function salvarResultadoNoLocalStorage(resultado) {
 
+function recuperaHistorico() {
+    let historico = localStorage.getItem("historico");
+
+    if(!historico) {
+        return [];
+    }
+
+    let historicoObjeto = JSON.parse(historico);
+
+    return historicoObjeto;
 }
 
+function salvarHistorico(conversao) {
+    let historico = recuperaHistorico(); // historico é um array de obj
+    
+    historico.push(conversao);
+    historico = JSON.stringify(historico);
+    localStorage.setItem("historico", historico);
+}
 
 function limpar() {
     let paragrafoResultado = document.getElementById("resultado");
