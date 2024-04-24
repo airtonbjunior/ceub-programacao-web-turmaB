@@ -47,24 +47,28 @@ if(localStorage.getItem("aceitouCookie") == "1") {
 function buscaConversaoAPI(moedaOrigem, moedaDestino) {
     let urlApi = "https://economia.awesomeapi.com.br/last/";
     urlApi = urlApi + moedaOrigem + "-" + moedaDestino;
-    console.log(urlApi);
-    let responseAPI = "";
+
+    let responseAPI;
 
     fetch(urlApi).then(function(response){
         if(response.status == 200) {
             console.log("A chamada foi feita com sucesso");
         }    
         return response.json();
-
     }).then(function(data){
-        responseAPI = data;
-        console.log(data);
+        let objetoEmJson = JSON.stringify(data);
+        console.log(data[moedaOrigem + moedaDestino]);
+        console.log(data[moedaOrigem + moedaDestino]["ask"]);
+        console.log(objetoEmJson)
+        // retornar o parametro de conversao que está no atributo "ask"
+        responseAPI = data[moedaOrigem + moedaDestino]["ask"];
+        return responseAPI;
     }).catch(function(error){
-        console.log("Deu erro");
         console.log(error);
     })
 
-    return responseAPI;
+    //console.log("Antes do retorno da função principal " + responseAPI);
+    //return responseAPI;
 }
 
 function aceitarMensagem() {
@@ -119,7 +123,6 @@ function converter() {
         return;
     }
 
-    buscaConversaoAPI(relacaoNomesMoedas[moeda1], relacaoNomesMoedas[moeda2]);
 
     let simbolo = valoresConversao[moeda2]["simbolo"];
     let resultado = valorUsuario * valoresConversao[moeda1][moeda2];
