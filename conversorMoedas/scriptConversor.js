@@ -43,10 +43,10 @@ if(localStorage.getItem("aceitouCookie") == "1") {
 
 
 function buscaConversaoMinhaAPI(moedaOrigem, moedaDestino) {
-    let urlApi = "http://localhost:4000/conversao/"
+    let urlApi = "http://localhost:4000/conversao/";
     urlApi = urlApi + moedaOrigem + "-" + moedaDestino
 
-    fetch(urlApi).then(function(response){
+    return fetch(urlApi).then(function(response){
         if(response.status == 200) {
             console.log("A chamada para a minha API foi feita com sucesso");
         }
@@ -145,6 +145,8 @@ function converter() {
     }
     
 
+    //buscaConversaoMinhaAPI(relacaoNomesMoedas[moeda1], relacaoNomesMoedas[moeda2]);
+    
     buscaConversaoMinhaAPI(relacaoNomesMoedas[moeda1], relacaoNomesMoedas[moeda2])
     .then(function(fatorConversao){
         console.log("data é " + fatorConversao);

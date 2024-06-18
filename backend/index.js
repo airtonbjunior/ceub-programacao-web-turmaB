@@ -1,14 +1,20 @@
 const cors = require('cors');
 const express = require('express');
 const aplicacao = express();
-aplicacao.use(cors());
+aplicacao.use(cors({
+    origin: 'http://localhost:5500',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    credentials: true,
+  }));
 const port = 4000;
 
+/*
 aplicacao.use(cors({
     origin: 'http://localhost:5500', // Permitir a origem específica
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Métodos permitidos
     credentials: true, // Permitir envio de cookies
   }));
+*/
 
 const valoresConversao = {
     brl: {
@@ -74,10 +80,10 @@ aplicacao.get('/info', (req, res) => {
 });
 
 aplicacao.get('/conversao/:moedas', (req, res) => {
-    // processo de conversão
+    
     let moedas = req.params.moedas.split("-");
-    let moeda1 = moedas[0];
-    let moeda2 = moedas[1];
+    let moeda1 = moedas[0].toLowerCase();
+    let moeda2 = moedas[1].toLowerCase();
 
     console.log(moeda1);
     console.log(moeda2);
@@ -85,10 +91,10 @@ aplicacao.get('/conversao/:moedas', (req, res) => {
     console.log(valoresConversao[moeda1][moeda2]);
     
     conversao = {
-        fatorConversao: valoresConversao['brl']['usd']
+        fatorConversao: valoresConversao[moeda1][moeda2]
     };
     
-    res.status(200).json(valoresConversao['brl']['usd']);
+    res.status(200).json(conversao);
 });
 
 
