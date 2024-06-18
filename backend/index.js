@@ -1,6 +1,33 @@
+const cors = require('cors');
 const express = require('express');
 const aplicacao = express();
+aplicacao.use(cors());
 const port = 4000;
+
+aplicacao.use(cors({
+    origin: 'http://localhost:5500', // Permitir a origem específica
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', // Métodos permitidos
+    credentials: true, // Permitir envio de cookies
+  }));
+
+const valoresConversao = {
+    brl: {
+        eur: 0.19,
+        usd: 0.20,
+        simbolo: "R$"
+    },
+    usd: {
+        brl: 4.99,
+        eur: 0.92,
+        simbolo: "US$"
+    },
+    eur: {
+        brl: 5.40,
+        usd: 1.08,
+        simbolo: "EU"
+    }
+}
+
 
 aplicacao.get('/', (req, res) => {
     res.send("Chamei o backend com sucesso");
@@ -21,6 +48,7 @@ aplicacao.get('/moedas', (req, res) => {
     res.status(200).json(moedas);
 
 });
+
 
 aplicacao.post('/moedas', (req, res) => {
     const moedas = {
@@ -53,12 +81,29 @@ aplicacao.get('/conversao/:moedas', (req, res) => {
 
     console.log(moeda1);
     console.log(moeda2);
-    
-    // Fazer o processo de conversão no backend e retornar para o front
 
-    conversao = {};
-    res.status(200).json(conversao);
+    console.log(valoresConversao[moeda1][moeda2]);
+    
+    conversao = {
+        fatorConversao: valoresConversao['brl']['usd']
+    };
+    
+    res.status(200).json(valoresConversao['brl']['usd']);
 });
+
+
+//aplicacao.METODO('/historico', (req, res) => {
+
+    // Lógica da rota aqui
+
+//});
+
+
+//aplicacao.METODO('/historico/:conversao', (req, res) => {
+
+    // Lógica da rota aqui
+
+//});
 
 // Aplicação ouvindo a porta 4000
 aplicacao.listen(port, () => {
