@@ -75,8 +75,28 @@ aplicacao.get('/info', (req, res) => {
 aplicacao.get('/conversao/:moedas', (req, res) => {
     // processo de conversão
     let moedas = req.params.moedas.split("-");
+
+    if (moedas.length != 2) {
+        console.log("Não tem 2 parâmetros");
+        res.status(400);
+        return;
+    }
+
     let moeda1 = moedas[0].toUpperCase();
     let moeda2 = moedas[1].toUpperCase();
+
+    if (moeda1 != "BRL" && moeda1 != "EUR" && moeda1 != "USD") {
+        console.log("Moeda 1 não suportada");
+        res.status(400);
+        //return;
+    }
+
+    if (moeda2 != "BRL" && moeda2 != "EUR" && moeda2 != "USD") {
+        console.log("Moeda 2 não suportada");
+        res.status(400);
+        //return;
+    }
+
 
     console.log("moeda 1 é -> " + moeda1);
     console.log("moeda 2 é -> " + moeda2);
