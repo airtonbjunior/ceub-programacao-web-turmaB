@@ -41,6 +41,27 @@ if(localStorage.getItem("aceitouCookie") == "1") {
 }
 
 
+function buscaConversaoMinhaAPI(moedaOrigem, moedaDestino) {
+    let urlApi = "http://localhost:4000/conversao/";
+
+    urlApi = urlApi + moedaOrigem + "-" + moedaDestino;
+
+    return fetch(urlApi).then(function(response){
+        if(response.status == 200) {
+            console.log("Chamada a minha API feita com sucesso!");
+        }
+
+        console.log(response);
+        return response.json();
+    }).then(function(data){
+        console.log("Estou no segundo then");
+        return JSON.stringify(data);  
+    }).catch(function(error){
+        console.log("Deu erro!");
+        console.log(error);
+    })
+}
+
 // devo fazer essa função ser assíncrona (usar async)? Por que?
 function buscaConversaoAPI(moedaOrigem, moedaDestino) {
     let urlApi = "https://economia.awesomeapi.com.br/last/";
@@ -115,6 +136,24 @@ function converter() {
         return;
     }
 
+    buscaConversaoMinhaAPI(relacaoNomesMoedas[moeda1], relacaoNomesMoedas[moeda2]).then(function(data){
+        data = JSON.parse(data);
+        
+        let simbolo = valoresConversao[moeda2]["simbolo"];
+        let resultado = valorUsuario * data["fator"];
+        let paragrafoResultado = document.getElementById("resultado");
+        paragrafoResultado.textContent = simbolo + " " + resultado.toFixed(2);
+    
+        let objetoResultado = {
+            valorDoUsuario: valorUsuario,
+            valorMoeda1: moeda1,
+            valorMoeda2: moeda2,
+            valorResultado: resultado.toFixed(2)
+        }
+        salvarHistorico(objetoResultado);
+        
+    });
+    /*
     // Como é assíncrono e retorna uma premises, uso o then para aguardar o resultado do método buscaConversaoAPI
     buscaConversaoAPI(relacaoNomesMoedas[moeda1], relacaoNomesMoedas[moeda2]).then(function(fatorConversao){
         console.log("data é " + fatorConversao);
@@ -131,6 +170,7 @@ function converter() {
         }
         salvarHistorico(objetoResultado);
     });
+    */
 }
 
 
